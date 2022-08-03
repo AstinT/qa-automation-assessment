@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  test-api:
+  run:
     runs-on: ubuntu-latest
     steps:
     # Check out repository
@@ -17,20 +17,24 @@ jobs:
       with: 
         node-version: '16.x'
     
-    # Install the newman and html extra reporter
+    # Install newman
     - name: Install newman
       run: |
        npm install -g newman
+       
+    # Install html extra reporter
+    - name: Install html extra reporter
+      run: |
        npm install -g newman-reporter-htmlextra
 
-    # Make directory to upload the test results
+    # Make directory for results
     - name: Make directory for results
       run: mkdir -p testResults
 
     # Run newman
     - name: Run newman
       run: |
-       newman run ./JSON_Placeholder_API.postman_collection.json -e ./DEV.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+       newman run ./API Test Automation/JSON_Placeholder_API.postman_collection.json -e ./API Test Automation/DEV.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
 
     # Upload the contents of Test Results directory to workspace
     - name: Output the run Details
