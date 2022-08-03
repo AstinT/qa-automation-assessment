@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "d44c1bf6-bf9c-4eca-82b0-f5fb22760440",
+		"name": "JSON_Placeholder_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "TC1: Verify GET Users request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body array should have a length of 10\", function () {\r",
+									"    pm.expect(pm.response.json().length).to.equal(10);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}{{users-endpoint}}",
+							"host": [
+								"{{base-url}}{{users-endpoint}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TC2: Verify GET User request by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body should have property name with a value of 'Nicholas Runolfsdottir V'\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Nicholas Runolfsdottir V\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}{{users-endpoint}}/8",
+							"host": [
+								"{{base-url}}{{users-endpoint}}"
+							],
+							"path": [
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TC3: Verify POST Users request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomFullName}}\",\r\n    \"username\": \"{{$randomUserName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"address\": {\r\n        \"street\": \"Ellsworth Summit\",\r\n        \"suite\": \"Suite 729\",\r\n        \"city\": \"Aliyaview\",\r\n        \"zipcode\": \"45169\",\r\n        \"geo\": {\r\n            \"lat\": \"-14.3990\",\r\n            \"lng\": \"-120.7677\"\r\n        }\r\n    },\r\n    \"phone\": \"586.493.6943 x140\",\r\n    \"website\": \"jacynthe.com\",\r\n    \"company\": {\r\n        \"name\": \"Abernathy Group\",\r\n        \"catchPhrase\": \"Implemented secondary concept\",\r\n        \"bs\": \"e-enable extensible e-tailers\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}{{users-endpoint}}",
+							"host": [
+								"{{base-url}}{{users-endpoint}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "users-endpoint",
+			"value": "users/",
+			"type": "default"
+		}
+	]
+}
