@@ -1,0 +1,44 @@
+name: Newman-Build
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    # Check out repository
+    - uses: actions/checkout@v2
+      
+    # Install Node
+    - name: Install Node
+      uses: actions/setup-node@v1
+      with: 
+        node-version: 16
+    
+    # Install newman
+    - name: Install newman
+      run: |
+       npm install -g newman
+       
+    # Install html extra reporter
+    - name: Install html extra reporter
+      run: |
+       npm install -g newman-reporter-htmlextra
+
+    # Make directory for html report
+    - name: Make directory for html report
+      run: mkdir -p results
+
+    # Run newman
+    - name: Run newman
+      run: |
+       newman run "./API Test Automation/JSON_Placeholder_API.postman_collection.json" -e "./API Test Automation/DEV.postman_environment.json" -r cli,htmlextra --reporter-htmlextra-export results/htmlReport.html --reporter-htmlextra-darkTheme
+
+    # Upload the html report
+    - name: Upload the html report
+      uses: actions/upload-artifact@v2
+      with: 
+       name: HtmlReport
+       path: results
