@@ -50,6 +50,11 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
+									"pm.test(\"Response body should have property id with a value of '8'\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(8);\r",
+									"});\r",
+									"\r",
 									"pm.test(\"Response body should have property name with a value of 'Nicholas Runolfsdottir V'\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.name).to.eql(\"Nicholas Runolfsdottir V\");\r",
@@ -83,6 +88,26 @@
 								"exec": [
 									"pm.test(\"Successful POST request\", function () {\r",
 									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body should have property name with a value of 'Bob Smith'\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(\"Bob Smith\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body should have property username with a value of 'bob_smith'\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.username).to.eql(\"bob_smith\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body should have property email with a value of 'bob_smith@email.com'\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.email).to.eql(\"bob_smith@email.com\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body should have property id with a value of '11'\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(11);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -94,7 +119,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"{{$randomFullName}}\",\r\n    \"username\": \"{{$randomUserName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"address\": {\r\n        \"street\": \"Ellsworth Summit\",\r\n        \"suite\": \"Suite 729\",\r\n        \"city\": \"Aliyaview\",\r\n        \"zipcode\": \"45169\",\r\n        \"geo\": {\r\n            \"lat\": \"-14.3990\",\r\n            \"lng\": \"-120.7677\"\r\n        }\r\n    },\r\n    \"phone\": \"586.493.6943 x140\",\r\n    \"website\": \"jacynthe.com\",\r\n    \"company\": {\r\n        \"name\": \"Abernathy Group\",\r\n        \"catchPhrase\": \"Implemented secondary concept\",\r\n        \"bs\": \"e-enable extensible e-tailers\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"name\": \"Bob Smith\",\r\n    \"username\": \"bob_smith\",\r\n    \"email\": \"bob_smith@email.com\" \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
