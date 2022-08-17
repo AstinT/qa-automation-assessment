@@ -17,7 +17,7 @@ namespace BnzAppFramework.Components
         // Functions
         protected override bool EvaluateLoadedStatus()
         {
-            return ElementIsDisplayed(payeesButtonLocator);
+            return IsElementDisplayed(payeesButtonLocator);
         }
 
         protected override void ExecuteLoad()

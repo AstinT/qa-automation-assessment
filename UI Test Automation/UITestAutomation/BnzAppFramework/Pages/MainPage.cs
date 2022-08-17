@@ -10,8 +10,7 @@ namespace BnzAppFramework.Pages
         private const string URL = "https://www.demo.bnz.co.nz/client/";
 
         // Locators
-        public readonly By menuButtonLocator = By.XPath("//*[@id='left']/div[1]/div/button");
-        public readonly By overallLabelLocator = By.XPath("//*[@id='left']/div[1]/div/button");
+        private readonly By menuButtonLocator = By.XPath("//*[@id='left']/div[1]/div/button");
 
         // Constructor
         public MainPage(WebDriver webDriver)
@@ -36,6 +35,11 @@ namespace BnzAppFramework.Pages
         {
             ClickElement(menuButtonLocator);
             return new NavigationMenu(WebDriver);
+        }
+
+        public bool TransferSuccessfulAlertIsDisplayed()
+        {
+            throw new NotImplementedException();
         }
     }
 }
